@@ -18,13 +18,21 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 const Port = 5000;
 
-app.get('/',(req,res)=>{
-    const sqlinsert = "INSERT INTO contact_db (name, email, contact) VALUES('Sam','sam@gmail.com',9876543210)"
-    db.query(sqlinsert,(err,result)=>{
-        console.log("Error", error);
-        console.log("Results", result);
-        res.send("hey dood") 
+app.get('/api/get',(req,res)=>{
+    const sql_get = "SELECT * FROM contact_db";
+    db.query(sql_get,(error,result)=>{
+        // console.log(result);
+        res.send('result');
     })
+})
+
+app.get('/',(req,res)=>{
+    // const sqlinsert = "INSERT INTO contact_db (name, email, contact) VALUES('Sam','sam@gmail.com',9876543210)"
+    // db.query(sqlinsert,(err,result)=>{
+    //     console.log("Error", error);
+    //     console.log("Results", result);
+    //     res.send("hey dood") 
+    // })
     
 })
 
