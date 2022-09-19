@@ -8,6 +8,8 @@ const Home = () => {
 
     const loadData = async () => {
         const response = await axios.get("http://localhost:5000/api/get")
+        console.log(response)
+        setData(response?.data)
     }
 
     useEffect(() => {
@@ -18,6 +20,9 @@ const Home = () => {
 
   return (
     <div style={{marginTop:"150px"}}>
+        <Link to='/addcontact'>
+        <button type="" className='btn btn-contact'> Add Contact </button>
+        </Link>
         <table className='styled-table'>
             <thead>
                 <tr>
@@ -29,7 +34,9 @@ const Home = () => {
                 </tr>
             </thead>
             <tbody>
-                {data.map((item,index)=>{
+                {data.map((item,index) => {
+                    console.log(item,"data")
+                    return(
                     <tr key={item.id}>
                         <th scope='row'>{index + 1}</th>
                         <td>{item.name}</td>
@@ -44,7 +51,7 @@ const Home = () => {
                                 <button className='btn btn-view'>View</button>
                             </Link>
                         </td>
-                    </tr>
+                    </tr>)
                 })}
             </tbody>
         </table>
